@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Илья Комаров — визитка</title>
+  
+  <!-- Fonts: Gothic for headings, modern sans for body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Manrope:wght@300..800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b0b10;
+      --panel: #111218;
+      --text: #e7e7ec;
+      --muted: #a5a8b5;
+      --line: #1b1c25;
+      --accent-1: #8a5cff;
+      --accent-2: #00f5d4;
+      --accent-3: #69f0ff;
+      --radius: 20px;
+      --shadow: 0 10px 30px rgba(0,0,0,.45);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 800px at 70% -10%, rgba(138,92,255,.12), transparent 60%),
+                  radial-gradient(1000px 700px at -20% 10%, rgba(0,245,212,.10), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Header */
+    .header {
+      position: fixed; inset: 0 0 auto 0; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 20px; z-index: 50;
+      background: rgba(9,10,14,.35);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+    .brand {
+      display: flex; align-items: center; gap: 12px;
+      font-weight: 700; letter-spacing: .4px;
+    }
+    .brand__mark {
+      width: 12px; height: 12px; border-radius: 999px;
+      background: radial-gradient(120% 120% at 20% 20%, var(--accent-2), var(--accent-1));
+      box-shadow: 0 0 12px rgba(0,245,212,.7), 0 0 24px rgba(138,92,255,.35);
+    }
+    nav a { color: var(--muted); text-decoration: none; margin-left: 18px; font-weight: 600; }
+    nav a:hover { color: var(--text); }
+
+    /* Hero */
+    .hero {
+      position: relative; min-height: 100svh; display: grid; place-items: center;
+      padding: 120px 20px 80px; overflow: hidden;
+    }
+    .orb, .orb2 { position: absolute; border-radius: 50%; filter: blur(60px); opacity: .18; pointer-events: none; }
+    .orb { width: 520px; height: 520px; background: radial-gradient(circle at 35% 35%, var(--accent-1), transparent 60%); top: -120px; right: -160px; }
+    .orb2 { width: 460px; height: 460px; background: radial-gradient(circle at 60% 60%, var(--accent-2), transparent 60%); bottom: -160px; left: -100px; }
+
+    .hero__inner { max-width: 1040px; width: 100%; display: grid; gap: 28px; text-align: center; }
+    .pre {
+      font-size: .95rem; color: var(--muted); text-transform: uppercase; letter-spacing: .28em;
+    }
+    .title { font-family: "UnifrakturMaguntia", serif; font-size: clamp(40px, 8vw, 104px); line-height: .95; }
+    .nick {
+      color: var(--muted);
+      font-weight: 700; letter-spacing: .08em; text-transform: lowercase;
+    }
+    .nick .chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,.02); }
+    .nick .dot { width: 6px; height: 6px; border-radius: 999px; background: linear-gradient(135deg, var(--accent-2), var(--accent-1)); box-shadow: 0 0 8px rgba(0,245,212,.6); }
+
+    .slogan { font-size: clamp(16px, 2.4vw, 28px); opacity: .9; min-height: 2.4em; }
+    .slogan .cursor { display: inline-block; width: .5ch; background: currentColor; opacity: .8; animation: blink 1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .cta {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; margin-top: 8px;
+    }
+    .btn {
+      --glow: 0 0 12px rgba(138,92,255,.6), 0 0 24px rgba(0,245,212,.25);
+      position: relative; display: inline-flex; align-items: center; gap: 10px; padding: 14px 18px;
+      border-radius: 999px; background: rgba(255,255,255,.03); color: var(--text); text-decoration: none;
+      border: 1px solid rgba(255,255,255,.08); box-shadow: var(--glow); font-weight: 700;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); background: rgba(255,255,255,.06); box-shadow: 0 0 18px rgba(0,245,212,.7), 0 0 36px rgba(138,92,255,.45); }
+
+    /* Sections */
+    section { padding: 96px 20px; }
+    .container { max-width: 1040px; margin: 0 auto; }
+    .section__title { font-family: "UnifrakturMaguntia", serif; font-size: clamp(28px, 4.6vw, 56px); margin: 0 0 12px; }
+    .section__lead { color: var(--muted); margin: 0 0 28px; }
+
+    .about {
+      background: linear-gradient(180deg, rgba(255,255,255,.02), transparent 24%);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 12px; }
+    .tag {
+      padding: 10px 14px; border-radius: 999px; border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
+      font-weight: 700; letter-spacing: .02em;
+    }
+
+    .cards { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+    .card::after { content: ""; position: absolute; inset: -40% -40% auto auto; width: 80%; height: 80%; background: radial-gradient(300px 200px at 80% 0%, rgba(138,92,255,.18), transparent 60%); pointer-events: none; }
+
+    .contact-row { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text); border-radius: 14px; padding: 12px; border: 1px solid var(--line); background: rgba(255,255,255,.02); transition: transform .2s ease, box-shadow .2s ease; }
+    .contact-row:hover { transform: translateY(-2px); box-shadow: 0 0 16px rgba(105,240,255,.35); }
+
+    .icon { width: 22px; height: 22px; opacity: .9; }
+
+    .footer { padding: 36px 20px 56px; text-align: center; color: var(--muted); }
+
+    /* Reveal on scroll */
+    .fade-up { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease; }
+    .fade-up.in-view { opacity: 1; transform: translateY(0); }
+
+    /* Media */
+    @media (max-width: 720px) {
+      nav { display: none; }
+      .cards { grid-template-columns: 1fr; }
+      .hero__inner { text-align: left; }
+      .cta { justify-content: flex-start; }
+    }
+
+    /* Subtle gradient text utility */
+    .gtext {
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">
+      <span class="brand__mark"></span>
+      <span>Илья Комаров</span>
+    </div>
+    <nav>
+      <a href="#about">Обо мне</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="orb" aria-hidden="true"></div>
+    <div class="orb2" aria-hidden="true"></div>
+
+    <div class="hero__inner">
+      <div class="pre fade-up">создаю смысл — делаю красиво</div>
+      <h1 class="title fade-up">Илья Комаров</h1>
+
+      <div class="nick fade-up" aria-label="никнеймы">
+        <span class="chip" title="основной ник">
+          <span class="dot"></span>
+          whosyourdaddy
+        </span>
+        <!-- Примечание: второй ник, предложенный в ТЗ, не используется из соображений безопасности и этики. -->
+      </div>
+
+      <p class="slogan fade-up" id="slogan" aria-live="polite">&nbsp;</p>
+
+      <div class="cta fade-up">
+        <a class="btn" href="#about" aria-label="Смотри обо мне">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v14m0 0l-6-6m6 6l6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Обо мне
+        </a>
+        <a class="btn" href="#contacts" aria-label="Переход к контактам">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 8v8a2 2 0 01-2 2H9l-6 3V6a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Контакты
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="about">
+    <div class="container">
+      <h2 class="section__title fade-up">Обо мне</h2>
+      <p class="section__lead fade-up">Делаю вещи, которые хочется пересылать друзьям — минималистично, умно и с лёгким вайбом.</p>
+
+      <div class="cards">
+        <div class="card fade-up">
+          <h3 style="margin-top:0">Кто я</h3>
+          <div class="tags" aria-label="теги обо мне">
+            <span class="tag">дотер</span>
+            <span class="tag">философ</span>
+            <span class="tag">умный</span>
+            <span class="tag">красивый</span>
+            <span class="tag">мужчина</span>
+          </div>
+        </div>
+        <div class="card fade-up">
+          <h3 style="margin-top:0">Подход</h3>
+          <p style="margin:0">Минимализм, сочные микро-анимации, небанальные решения. Каждая деталь — на своём месте. 
+            <span class="gtext">Тёмная эстетика</span>, лёгкие переливы, плавные переходы и аккуратная типографика.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacts -->
+  <section id="contacts">
+    <div class="container">
+      <h2 class="section__title fade-up">Контакты</h2>
+      <p class="section__lead fade-up">Открыт к диалогу. Пиши, договоримся.</p>
+
+      <div class="cards">
+        <div class="card fade-up">
+          <a class="contact-row" href="https://t.me/whsrddy" target="_blank" rel="noopener" aria-label="Телеграм @whsrddy">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M9.036 15.58l-.377 5.32c.54 0 .774-.232 1.054-.51l2.53-2.427 5.242 3.84c.961.532 1.645.253 1.91-.89l3.462-16.19.002-.002c.307-1.43-.515-1.988-1.455-1.64L1.77 9.21c-1.41.548-1.39 1.335-.24 1.69l4.964 1.548 11.52-7.27c.54-.33 1.04-.148.63.18"/></svg>
+            @whsrddy
+          </a>
+        </div>
+        <div class="card fade-up">
+          <a class="contact-row" href="mailto:ilya_komarof@mail.ru" aria-label="Почта ilya_komarof@mail.ru">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2z" stroke="currentColor" stroke-width="1.6"/><path d="M22 8l-10 7L2 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            ilya_komarof@mail.ru
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    © <span id="year"></span> Илья Комаров — <span class="gtext">тёмный минимализм</span>
+  </footer>
+
+  <script>
+    // Typewriter for slogan
+    const sloganText = "пивл шикши епты бля"; // как в ТЗ
+    const sloganEl = document.getElementById('slogan');
+    let i = 0;
+    function type() {
+      if (i <= sloganText.length) {
+        sloganEl.innerHTML = sloganText.slice(0, i) + '<span class="cursor"></span>';
+        i++;
+        setTimeout(type, i < 6 ? 140 : 70);
+      } else {
+        // soft shimmer loop
+        sloganEl.classList.add('shimmer');
+      }
+    }
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('in-view');
+      })
+    }, { threshold: .18 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Parallax glow reacting to cursor
+    const hero = document.querySelector('.hero');
+    hero.addEventListener('mousemove', (e) => {
+      const rect = hero.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      hero.style.setProperty('--x', x);
+      hero.style.setProperty('--y', y);
+      document.querySelector('.orb').style.transform = `translate(${x * 40}px, ${y * 30}px)`;
+      document.querySelector('.orb2').style.transform = `translate(${x * -30}px, ${y * -20}px)`;
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Start typing after paint
+    window.addEventListener('DOMContentLoaded', () => setTimeout(type, 400));
+  </script>
+</body>
+</html>
